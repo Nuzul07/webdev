@@ -323,12 +323,15 @@ class CobaController extends Controller
 
     public function spec4()
     {
-        for ($i=0; $i < 5; $i++) { 
-            $rs = collect($this->data)->map(fn($item) => $item + ['nomor urut' => 1])->toArray();
+        $rs = collect($this->data)->map(fn($item) => $item + ['nomor urut' => 0])->toArray();
+
+        for ($i=0; $i < count($rs); $i++) { 
+            $rs[$i]['nomor urut'] = $i+1;
+        }
+
         return[
             'Status' => 'Success',
             'response' => $rs
         ];    
-        }
     }
 }
